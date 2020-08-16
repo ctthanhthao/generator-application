@@ -1,0 +1,11 @@
+server:
+  port:
+
+  error:
+    include-message: always
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: generator-app

@@ -1,0 +1,9 @@
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('Anna', 'NOUN');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('David', 'NOUN');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('Bird', 'NOUN');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('Cat', 'NOUN');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('is', 'VERB');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('sing', 'VERB');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('nice', 'ADJECTIVE');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('amazing', 'ADJECTIVE');
+INSERT INTO `generator_app`.`word` (`word`, `category`) VALUES ('attractive', 'ADJECTIVE');
