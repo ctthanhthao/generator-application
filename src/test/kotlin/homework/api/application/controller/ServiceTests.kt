@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.MockMvc
 import org.springframework.transaction.annotation.Transactional
 
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT
-                ,properties = ["spring.flyway.enabled=false"])
+                ,properties = ["spring.flyway.enabled=true"])
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @Transactional

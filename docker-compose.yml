@@ -1,0 +1,23 @@
+version: "3"
+services:
+  generator-app-c:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8086:8086"
+    networks:
+      - generator-mysql
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:8
+    networks:
+      - generator-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=generator-app
+
+networks:
+  generator-mysql:

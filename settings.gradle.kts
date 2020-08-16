@@ -1,1 +1,1 @@
-rootProject.name = "GeneratorApplication"
+rootProject.name = "generator-application"

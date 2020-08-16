@@ -43,7 +43,6 @@ class SentenceServiceImpl {
         return sentenceDao.save(obj)
     }
 
-    @Synchronized
     fun generateSentencesToNVA(): Unit {
         generate(arrayOf(Category.NOUN,Category.VERB, Category.ADJECTIVE))
     }

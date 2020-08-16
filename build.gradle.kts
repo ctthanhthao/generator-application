@@ -30,10 +30,7 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation( "net.javacrumbs.json-unit:json-unit:2.18.1")
-//	testImplementation("net.jadler:jadler-core:1.3.0")
-//	testImplementation("net.jadler:jadler-junit:1.3.0")
-//	testImplementation("net.jadler:jadler-jdk:1.3.0")
-
+	runtimeOnly("com.h2database:h2")
 }
 
 tasks.withType<Test> {

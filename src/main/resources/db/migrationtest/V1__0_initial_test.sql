@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS generator_app_test;
-use generator_app_test;
-
 create table word
 (
     word_id      BIGINT PRIMARY KEY auto_increment,

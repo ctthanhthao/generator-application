@@ -20,7 +20,7 @@ class WordServiceImplIntegrationTests : ServiceTests() {
         // When
         val savedWord = wordService.save(word)
         // Then
-        Assertions.assertTrue(savedWord.wordId !== 0L)
+        Assertions.assertTrue(savedWord.wordId != 0L)
         Assertions.assertEquals(word.word, savedWord.word)
         //Then
     }

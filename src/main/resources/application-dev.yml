@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8086
 
 spring:
   jpa:
@@ -11,9 +11,9 @@ spring:
 
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: "jdbc:mysql://localhost:3306/generator_app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false"
+    url: "jdbc:mysql://mysqldb/generator_app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false"
     username: "root"
-    password:
+    password: "root"
     testOnBorrow: true
     testWhileIdle: true
     timeBetweenEvictionRunsMillis: 60000
@@ -25,8 +25,8 @@ spring:
 
   flyway:
     enabled: true
-    url: jdbc:mysql://localhost:3306/mysql
+    url: jdbc:mysql://mysqldb/mysql
     schemas: generator_app
     user: "root"
-    password:
+    password: "root"
     locations: classpath:db/migration

@@ -30,7 +30,7 @@ class SentenceServiceImplIntegrationTests : ServiceTests() {
     fun testGenerateSentences(){
         // Given
         var sentences = sentenceService.findAll()
-        Assertions.assertTrue(sentences.size ===0)
+        Assertions.assertTrue(sentences.isEmpty())
         // When
         sentenceService.generateSentencesToNVA()
         // Then

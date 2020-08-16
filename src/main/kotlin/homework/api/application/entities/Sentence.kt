@@ -52,7 +52,7 @@ data class SentenceResource private constructor(val sentence : Sentence)
                 }
 
                 fun ofSentenceWithCustomLink(sentence: Sentence, method : Method, vararg params : Any) : SentenceResource{
-                        val link = WebMvcLinkBuilder.linkTo(method, sentence.sentenceId).withSelfRel()
+                        val link = WebMvcLinkBuilder.linkTo(method, params).withSelfRel()
                         sentence.add(link)
                         return of(sentence)
                 }
