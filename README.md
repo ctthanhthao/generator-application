@@ -29,24 +29,24 @@ At this stage, you can use browser or postman to make a request to the applicati
 
   ### Sentence
   
-  1. GET "http://<host>:8086/api/sentences/" : get all sentences
-  2. POST "http://<host>:8086/api/sentences/generate" without request body : generate sentences from the words in the system following form NOUN VERB ADJECTIVE
-  3. GET "http://<host>:8086/api/sentences/{id}" : get specific sentence by {id}
-  4. GET "http://<host>:8086/api/sentences/{id}/yodaTalk" : convert one sentence into form ADJECTIVE NOUN VERB
-  5. GET "http://<host>:8086/api/sentences/{id}/showDisplayCount" : For option 2(advance) : _Not Implemented yet_ 
+  1. GET \"http://<host>:8086/api/sentences/\" : get all sentences
+  2. POST \"http://<host>:8086/api/sentences/generate\" without request body : generate sentences from the words in the system following form NOUN VERB ADJECTIVE
+  3. GET \"http://<host>:8086/api/sentences/{id}\" : get specific sentence by {id}
+  4. GET \"http://<host>:8086/api/sentences/{id}/yodaTalk\" : convert one sentence into form ADJECTIVE NOUN VERB
+  5. GET \"http://<host>:8086/api/sentences/{id}/showDisplayCount\" : For option 2(advance) : _Not Implemented yet_ 
   
   ### Word
   
-  1. GET "http://<host>:8086/api/words/" : get all words
-  2. GET "http://<host>:8086/api/words/_{word}_" : get specific word by _{word}_
-  3. POST "http://<host>:8086/api/words/" with request body in json format as below : add new word and this word should be unique
+  1. GET \"http://<host>:8086/api/words/\" : get all words
+  2. GET \"http://<host>:8086/api/words/_{word}_\" : get specific word by _{word}_
+  3. POST \"http://<host>:8086/api/words/\" with request body in json format as below : add new word and this word should be unique.
   Request body :
-  _{
-  	"word":"Test",
-    "wordCategory":"NOUN"
-  }_
-  4. PUT "http://<host>:8086/api/words/_{word}_" with request body in json format as below : update some properties of the given word _{word}_. At this moment, just update the category.
+  {
+  	\"word\":\"Test\",
+    \"wordCategory\":\"NOUN\"
+  }
+  4. PUT \"http://<host>:8086/api/words/_{word}_\" with request body in json format as below : update some properties of the given word _{word}_. At this moment, just update the category.
   Request body
-  _{
-      "wordCategory":"NOUN"
-  }_
+  {
+      \"wordCategory\":\"NOUN\"
+  }
