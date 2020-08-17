@@ -32,7 +32,7 @@ At this stage, you can use browser or postman to make a request to the applicati
   2. POST "http://<host>:8086/api/sentences/generate" without request body : generate sentences from the words in the system following form NOUN VERB ADJECTIVE
   3. GET "http://<host>:8086/api/sentences/{id}" : get specific sentence by {id}
   4. GET "http://<host>:8086/api/sentences/{id}/yodaTalk" : convert one sentence into form ADJECTIVE NOUN VERB
-      
+  5. GET "http://<host>:8086/api/sentences/{id}/showDisplayCount" : For option 2(advance) : Not Implemented yet 
   #Word
   1. GET "http://<host>:8086/api/words/" : get all words
   2. GET "http://<host>:8086/api/words/{word}" : get specific word by {word}

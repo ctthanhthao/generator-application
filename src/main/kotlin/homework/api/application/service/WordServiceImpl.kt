@@ -31,7 +31,7 @@ class WordServiceImpl {
 
     fun save(obj: Word): Word {
         val word = obj.word
-        if ("""\W+""".toRegex().containsMatchIn(word))
+        if ("""\s""".toRegex().containsMatchIn(word))
         {
             throw GeneralException("The word must not contain whitespace", null, HttpStatus.BAD_REQUEST)
         }
