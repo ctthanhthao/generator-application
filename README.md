@@ -21,7 +21,7 @@ Make sure that the network is available then we follow steps as below :
   2. Run **_docker-compose build_**. It will take around 5 minutes to get this step done. 
      Tasks will be perform in this steps such as create database, execute unit tests/integration tests before jar file is generated
 
-  3. Finally, run **docker-compose up** for starting application at port 8086
+  3. Finally, run **_docker-compose up_** for starting application at port 8086
 
 At this stage, you can use browser or postman to make a request to the application
 
@@ -33,31 +33,20 @@ At this stage, you can use browser or postman to make a request to the applicati
   2. POST "http://<host>:8086/api/sentences/generate" without request body : generate sentences from the words in the system following form NOUN VERB ADJECTIVE
   3. GET "http://<host>:8086/api/sentences/{id}" : get specific sentence by {id}
   4. GET "http://<host>:8086/api/sentences/{id}/yodaTalk" : convert one sentence into form ADJECTIVE NOUN VERB
-  5. GET "http://<host>:8086/api/sentences/{id}/showDisplayCount" : For option 2(advance) : Not Implemented yet 
+  5. GET "http://<host>:8086/api/sentences/{id}/showDisplayCount" : For option 2(advance) : _Not Implemented yet_ 
   
   ### Word
   
   1. GET "http://<host>:8086/api/words/" : get all words
-  2. GET "http://<host>:8086/api/words/{word}" : get specific word by {word}
+  2. GET "http://<host>:8086/api/words/_{word}_" : get specific word by _{word}_
   3. POST "http://<host>:8086/api/words/" with request body in json format as below : add new word and this word should be unique
   Request body :
   _{
   	"word":"Test",
     "wordCategory":"NOUN"
   }_
-  4. PUT "http://<host>:8086/api/words/{word}" with request body in json format as below : update some properties of the given word. At this moment, just update the category.
+  4. PUT "http://<host>:8086/api/words/_{word}_" with request body in json format as below : update some properties of the given word _{word}_. At this moment, just update the category.
   Request body
   _{
       "wordCategory":"NOUN"
   }_
-
-  
-  
-
-
-
-
-
- 
-
-   
