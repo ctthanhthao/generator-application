@@ -29,23 +29,23 @@ At this stage, you can use browser or postman to make a request to the applicati
 
   ### Sentence
   
-  1. GET \"http://<host>:8086/api/sentences/\" : get all sentences
-  2. POST \"http://<host>:8086/api/sentences/generate\" without request body : generate sentences with unique id from the words added to the system following form NOUN VERB ADJECTIVE and generated sentence is accessible by GET /sentences/_{id}_, the sentence also contains generated date_time, number of views
-  3. GET \"http://<host>:8086/api/sentences/{id}\" : get specific sentence by {id}
-  4. GET \"http://<host>:8086/api/sentences/{id}/yodaTalk\" : convert one sentence into form ADJECTIVE NOUN VERB
-  5. GET \"http://<host>:8086/api/sentences/{id}/showDisplayCount\" : _**Not Implemented yet** for the option 2. (Advanced) Track number and id of exactly the same generated sentences (separate resource - introduce one)_ 
+  1. GET \"http://\<host\>:8086/api/sentences/\" : get all sentences
+  2. POST \"http://\<host\>:8086/api/sentences/generate\" without request body : generate sentences with unique id from the words added to the system following form NOUN VERB ADJECTIVE and generated sentence is accessible by GET /sentences/_{id}_, the sentence also contains generated date_time, number of views
+  3. GET \"http://\<host\>:8086/api/sentences/{id}\" : get specific sentence by {id}
+  4. GET \"http://\<host\>:8086/api/sentences/{id}/yodaTalk\" : convert one sentence into form ADJECTIVE NOUN VERB
+  5. GET \"http://\<host\>:8086/api/sentences/{id}/showDisplayCount\" : _**Not Implemented yet** for the option 2. (Advanced) Track number and id of exactly the same generated sentences (separate resource - introduce one)_ 
   
   ### Word
   
-  1. GET \"http://<host>:8086/api/words/\" : get all words
-  2. GET \"http://<host>:8086/api/words/_{word}_\" : get specific word by _{word}_
-  3. POST \"http://<host>:8086/api/words/\" with request body in json format as below : add new word and this word should be unique.
+  1. GET \"http://\<host\>:8086/api/words/\" : get all words
+  2. GET \"http://\<host\>:8086/api/words/_{word}_\" : get specific word by _{word}_
+  3. POST \"http://\<host\>:8086/api/words/\" with request body in json format as below : add new word and this word should be unique.
   Request body :
   {
   	\"word\":\"Test\",
     \"wordCategory\":\"NOUN\"
   }
-  4. PUT \"http://<host>:8086/api/words/_{word}_\" with request body in json format as below : update some properties of the given word _{word}_. At this moment, just update the category.
+  4. PUT \"http://\<host\>:8086/api/words/_{word}_\" with request body in json format as below : update some properties of the given word _{word}_. At this moment, just update the category.
   Request body
   {
       \"wordCategory\":\"NOUN\"
