@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface SentenceDao : CrudRepository<Sentence, Long> {
+    fun findSentenceByText(text : String) : Sentence?
 }

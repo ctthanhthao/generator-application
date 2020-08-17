@@ -5,12 +5,12 @@ import net.javacrumbs.jsonunit.JsonAssert
 import net.javacrumbs.jsonunit.JsonMatchers.*
 import net.javacrumbs.jsonunit.core.ConfigurationWhen.path
 import net.javacrumbs.jsonunit.core.ConfigurationWhen.then
+import net.javacrumbs.jsonunit.core.Option.IGNORING_VALUES
 import net.javacrumbs.jsonunit.core.internal.JsonUtils.jsonSource
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Test
-import net.javacrumbs.jsonunit.core.Option.IGNORING_VALUES
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 
 
 class SentenceResourceUnitTests {

@@ -4,10 +4,11 @@ import homework.api.application.dao.WordDao
 import homework.api.application.entities.Word
 import homework.api.application.exception.handler.GeneralException
 import homework.api.application.utils.Category
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.mockito.*
-import org.springframework.test.context.event.annotation.BeforeTestClass
-import org.springframework.test.context.event.annotation.BeforeTestMethod
 import java.util.*
 
 class WordServiceImplUnitTests {

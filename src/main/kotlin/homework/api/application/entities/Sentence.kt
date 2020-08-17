@@ -21,7 +21,7 @@ data class Sentence (
         @JsonProperty("id")
         var sentenceId : Long? = 0,
 
-        @Column(name = "text", nullable = false, updatable = true)
+        @Column(name = "text", nullable = false, unique = true, updatable = true)
         var text : String = "",
 
         @Column(name = "generated_date", nullable = false, updatable = true)

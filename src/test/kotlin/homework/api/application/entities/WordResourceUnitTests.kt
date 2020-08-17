@@ -9,7 +9,6 @@ import net.javacrumbs.jsonunit.core.ConfigurationWhen.path
 import net.javacrumbs.jsonunit.core.ConfigurationWhen.then
 import net.javacrumbs.jsonunit.core.Option.IGNORING_VALUES
 import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.Matchers.contains
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test

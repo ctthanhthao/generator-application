@@ -7,7 +7,6 @@ import homework.api.application.utils.FileReader
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
-import java.util.*
 import kotlin.properties.Delegates
 
 @Service("wordService")

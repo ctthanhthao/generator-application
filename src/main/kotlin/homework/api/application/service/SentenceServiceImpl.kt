@@ -7,11 +7,9 @@ import homework.api.application.entities.Word
 import homework.api.application.exception.handler.GeneralException
 import homework.api.application.utils.Category
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.repository.findByIdOrNull
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
-import kotlin.Exception
-import kotlin.collections.HashSet
 
 @Service("sentenceService")
 class SentenceServiceImpl {
@@ -40,7 +38,12 @@ class SentenceServiceImpl {
     }
 
     fun save(obj: Sentence): Sentence {
-        return sentenceDao.save(obj)
+        try {
+            return sentenceDao.save(obj)
+        }catch (ex : DataIntegrityViolationException)
+        {
+            throw GeneralException("The sentence already existed", ex, HttpStatus.BAD_REQUEST)
+        }
     }
 
     fun generateSentencesToNVA(): Unit {
@@ -96,8 +99,6 @@ class SentenceServiceImpl {
         {
             throw GeneralException("The system hasn't had all necessary types of words yet i.e NOUN, VERB, ADJECTIVE", null, HttpStatus.INTERNAL_SERVER_ERROR)
         }
-        // remove all existing sentences
-        sentenceDao.deleteAll()
 
         // Start to generate
         val indexes = arrayOf(0,0,0)
@@ -117,7 +118,12 @@ class SentenceServiceImpl {
                                      categoryListInOrder[1][indexes[1]].word,
                                      categoryListInOrder[2][indexes[2]].word)
 
-            sentenceDao.save(Sentence(text = sentenceArr.joinToString(" "), byRule = rule.joinToString(" "){
+            val text = sentenceArr.joinToString(" ")
+            val existSentence = sentenceDao.findSentenceByText(text)
+            if (existSentence != null && existSentence.sentenceId!! > 0L) {
+                continue
+            }
+            sentenceDao.save(Sentence(text = text, byRule = rule.joinToString(" "){
                 it -> "${it.name}"
             }))
             if ((i + 1) % thresholds[0] == 0)

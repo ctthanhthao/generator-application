@@ -1,6 +1,8 @@
 package homework.api.application.controller
 
-import homework.api.application.entities.*
+import homework.api.application.entities.Sentence
+import homework.api.application.entities.SentenceResource
+import homework.api.application.entities.SentenceResourceList
 import homework.api.application.service.SentenceServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
@@ -25,7 +27,6 @@ class SentenceController {
         return ResponseEntity.ok(SentenceResourceList(sentences))
     }
 
-
     @PostMapping("/generate")
     fun generate(): ResponseEntity<Void> {
         sentenceService.generateSentencesToNVA()
@@ -44,5 +45,7 @@ class SentenceController {
         val convertedStr = sentenceService.yodaTalk(sentenceId)
         return ResponseEntity.ok(SentenceResource.ofSentenceInYodaTalk(convertedStr, Sentence(sentenceId = sentenceId, text = convertedStr),sentenceId))
     }
+
+
 
 }

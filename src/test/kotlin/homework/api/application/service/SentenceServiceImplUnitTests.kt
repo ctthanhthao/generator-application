@@ -75,11 +75,28 @@ class SentenceServiceImplUnitTests {
         Mockito.`when`(wordDao.findWordByWordCategory(Category.NOUN)).thenReturn(listNoun)
         Mockito.`when`(wordDao.findWordByWordCategory(Category.VERB)).thenReturn(listVerb)
         Mockito.`when`(wordDao.findWordByWordCategory(Category.ADJECTIVE)).thenReturn(listAdj)
+        Mockito.`when`(sentenceDao.findSentenceByText(ArgumentMatchers.anyString())).thenReturn(null)
         // When
         sentenceService.generateSentencesToNVA()
         // Then
-        Mockito.verify(sentenceDao, Mockito.times(1)).deleteAll()
         Mockito.verify(sentenceDao, Mockito.times(4)).save(ArgumentMatchers.any(Sentence::class.java))
+    }
+
+    @Test
+    fun testItShouldNotGenerateSentencesIfDuplicate()
+    {
+        // Given
+        val listNoun = listOf<Word>(Word(word = "N1"), Word(word = "N2"))
+        val listVerb = listOf<Word>(Word(word = "V1"), Word(word = "V2"))
+        val listAdj = listOf<Word>(Word(word = "Adj"))
+        Mockito.`when`(wordDao.findWordByWordCategory(Category.NOUN)).thenReturn(listNoun)
+        Mockito.`when`(wordDao.findWordByWordCategory(Category.VERB)).thenReturn(listVerb)
+        Mockito.`when`(wordDao.findWordByWordCategory(Category.ADJECTIVE)).thenReturn(listAdj)
+        Mockito.`when`(sentenceDao.findSentenceByText(ArgumentMatchers.anyString())).thenReturn(Sentence(sentenceId = 1))
+        // When
+        sentenceService.generateSentencesToNVA()
+        // Then
+        Mockito.verify(sentenceDao, Mockito.times(0)).save(ArgumentMatchers.any(Sentence::class.java))
     }
 
     @Test

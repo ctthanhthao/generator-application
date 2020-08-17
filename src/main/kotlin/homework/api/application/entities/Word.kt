@@ -16,7 +16,7 @@ data class Word (
         @JsonProperty("id")
         val wordId : Long = 0,
 
-        @Column(name = "word", nullable = false, updatable = true)
+        @Column(name = "word", nullable = false, unique = true, updatable = true)
         var word : String = "",
 
         @Column(name = "category", nullable = false, updatable = true)
