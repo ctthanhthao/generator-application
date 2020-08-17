@@ -3,8 +3,11 @@ package homework.api.application.controller
 import homework.api.application.entities.Sentence
 import homework.api.application.entities.SentenceResource
 import homework.api.application.entities.SentenceResourceList
+import homework.api.application.entities.SentenceWithCount
+import homework.api.application.exception.handler.GeneralException
 import homework.api.application.service.SentenceServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -46,6 +49,10 @@ class SentenceController {
         return ResponseEntity.ok(SentenceResource.ofSentenceInYodaTalk(convertedStr, Sentence(sentenceId = sentenceId, text = convertedStr),sentenceId))
     }
 
-
+    @GetMapping("/{id}/showCount",produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun showDisplayCountOfSentence(@PathVariable(value = "id") sentenceId: Long): ResponseEntity<SentenceWithCount> {
+        val sentence = sentenceService.findById(sentenceId)?: throw GeneralException("The sentence hasn't existed", null, HttpStatus.NOT_FOUND)
+        return ResponseEntity.ok(sentenceService.showDisplayCountOf(sentence))
+    }
 
 }

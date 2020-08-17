@@ -11,9 +11,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class SentenceControllerTests : ServiceTests(){
 
-    companion object {
-        var logger: Logger = LoggerFactory.getLogger(this::class.java)
-    }
     private val mapper = jacksonObjectMapper()
 
     @Test
@@ -43,5 +40,36 @@ class SentenceControllerTests : ServiceTests(){
                 .andExpect(MockMvcResultMatchers.jsonPath("$.sentence.text").exists())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.sentence.id").doesNotExist())
 
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun `generate sentence, send request to increase number of view then send request to get count`(){
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/api/sentences/generate")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk)
+
+        var result = mockMvc.perform(MockMvcRequestBuilders.get("/api/sentences/")
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo {print(it)}
+                .andExpect(MockMvcResultMatchers.status().isOk)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.sentences").exists())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.sentences[*].sentence").isNotEmpty)
+
+        val content: String = result.andReturn().response.contentAsString
+        val sentences = mapper.readValue<SentenceResourceList>(content, SentenceResourceList::class.java)
+        val id = sentences.sentences[0].sentence.sentenceId
+        // send request to increase the number of view
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/sentences/{id}", id)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo {print(it)}
+                .andExpect(MockMvcResultMatchers.status().isOk)
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/sentences/{id}/showCount", id)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo {print(it)}
+                .andExpect(MockMvcResultMatchers.status().isOk)
+                .andExpect(MockMvcResultMatchers.jsonPath("$.showDisplayCount").value(1))
     }
 }

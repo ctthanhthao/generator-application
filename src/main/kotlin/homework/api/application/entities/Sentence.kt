@@ -69,3 +69,5 @@ data class SentenceResource private constructor(val sentence : Sentence)
 }
 
 data class SentenceResourceList(val sentences : MutableList<SentenceResource>)
+
+data class SentenceWithCount (val showDisplayCount: Long, val sentence : Sentence) : RepresentationModel<SentenceWithCount>()

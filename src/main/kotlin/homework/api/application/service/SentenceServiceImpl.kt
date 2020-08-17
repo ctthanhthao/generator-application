@@ -1,13 +1,16 @@
 package homework.api.application.service
 
+import homework.api.application.controller.SentenceController
 import homework.api.application.dao.SentenceDao
 import homework.api.application.dao.WordDao
 import homework.api.application.entities.Sentence
+import homework.api.application.entities.SentenceWithCount
 import homework.api.application.entities.Word
 import homework.api.application.exception.handler.GeneralException
 import homework.api.application.utils.Category
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 
@@ -22,6 +25,16 @@ class SentenceServiceImpl {
     fun findAll() : List<Sentence>
     {
         return sentenceDao.findAll().map { s -> s }
+    }
+
+    fun findById(id: Long) : Sentence? {
+        val opt = sentenceDao.findById(id)
+        return if (opt.isPresent){
+            opt.get()
+        }
+        else {
+            null
+        }
     }
 
     fun findByIdAndIncreaseView(id: Long): Sentence? {
@@ -53,6 +66,16 @@ class SentenceServiceImpl {
     fun yodaTalk(sentenceId: Long) : String
     {
         return convertSentence(sentenceId, arrayOf(Category.ADJECTIVE.name, Category.NOUN.name, Category.VERB.name))
+    }
+
+    fun showDisplayCountOf(sentence : Sentence) : SentenceWithCount
+    {
+        val count = sentence.showDisplayCount!!
+        sentence.showDisplayCount = null
+        val sentenceWithCount = SentenceWithCount(count, sentence.removeLinks())
+        val method = SentenceController::class.java.getMethod(SentenceController::showDisplayCountOfSentence.name, Long::class.java)
+        val link = WebMvcLinkBuilder.linkTo(method, sentence.sentenceId).withSelfRel()
+        return sentenceWithCount.add(link)
     }
 
     private fun convertSentence(sentenceId : Long, toRule : Array<String>) : String

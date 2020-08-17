@@ -138,4 +138,14 @@ class SentenceServiceImplUnitTests {
             sentenceService.yodaTalk(1L)
         }
     }
+
+    @Test
+    fun testShowDisplayCount(){
+        // Given
+        val sentence = Sentence(text = "Test run ok", showDisplayCount = 3)
+        // When
+        val sentenceWithCount = sentenceService.showDisplayCountOf(sentence)
+        // Then
+        Assertions.assertEquals(3, sentenceWithCount.showDisplayCount)
+    }
 }
