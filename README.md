@@ -30,10 +30,10 @@ At this stage, you can use browser or postman to make a request to the applicati
   ### Sentence
   
   1. GET \"http://<host>:8086/api/sentences/\" : get all sentences
-  2. POST \"http://<host>:8086/api/sentences/generate\" without request body : generate sentences from the words in the system following form NOUN VERB ADJECTIVE
+  2. POST \"http://<host>:8086/api/sentences/generate\" without request body : generate sentences with unique id from the words added to the system following form NOUN VERB ADJECTIVE and generated sentence is accessible by GET /sentences/_{id}_, the sentence also contains generated date_time, number of views
   3. GET \"http://<host>:8086/api/sentences/{id}\" : get specific sentence by {id}
   4. GET \"http://<host>:8086/api/sentences/{id}/yodaTalk\" : convert one sentence into form ADJECTIVE NOUN VERB
-  5. GET \"http://<host>:8086/api/sentences/{id}/showDisplayCount\" : For option 2(advance) : _Not Implemented yet_ 
+  5. GET \"http://<host>:8086/api/sentences/{id}/showDisplayCount\" : _**Not Implemented yet** for the option 2. (Advanced) Track number and id of exactly the same generated sentences (separate resource - introduce one)_ 
   
   ### Word
   
