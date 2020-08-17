@@ -16,7 +16,7 @@ Note: Since this service doesn't make any call to another one so jadler library 
 #II. How to run
 Make sure that the network is available then we follow steps as below : 
 
-  1. After extracting generator-application.jar, in generator-application folder, open terminal from this folder
+  1. In generator-application folder, open terminal from this folder
 
   2. Run "docker-compose build". It will take around 5 minutes to get this step done. 
      Tasks will be perform in this steps such as create database, execute unit tests/integration tests before jar file is generated
