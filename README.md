@@ -19,11 +19,26 @@ Make sure that the network is available then we follow steps as below :
   1. In generator-application folder, open terminal from this folder
 
   2. Run **_docker-compose build_**. It will take around 5 minutes to get this step done. 
-     Tasks will be perform in this steps such as create database, execute unit tests/integration tests before jar file is generated
+     Tasks will be perform in this steps such as create database, execute unit tests/integration tests before jar file is generated. 
 
-  3. Finally, run **_docker-compose up_** for starting application at port 8086
+  3. Finally, run **_docker-compose up_** for starting application at port 8086. 
+  
+  For the first time, you can meet the error **Communication link failure** because mysql db hasn't been started properly before starting generator app. This error will go away when we run **_docker-compose up_** again
+  
+  `
+generator-app-c_1  | SQL State  : 08S01
+generator-app-c_1  | Error Code : 0
+generator-app-c_1  | Message    : Communications link failure
+generator-app-c_1  | 
+generator-app-c_1  | The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+generator-app-c_1  | 
+mysqldb_1          | 2020-08-17 14:27:20+00:00 [Note] [Entrypoint]: Creating database generator-app
+generator-app-c_1  | 2020-08-17 14:27:20.432  INFO 1 --- [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+mysqldb_1          | .......
+`
 
-At this stage, you can use browser or postman to make a request to the application
+At this stage, you can use browser or postman to make a request to the application.
+
 
 ## APIs 
 
