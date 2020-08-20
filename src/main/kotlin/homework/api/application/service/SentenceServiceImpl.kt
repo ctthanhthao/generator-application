@@ -107,26 +107,23 @@ class SentenceServiceImpl {
         if (rule.size < 3 || HashSet(listOf(*rule)).size < 3)
             throw GeneralException("The rule should include 3 types : NOUN, VERB and ADJECTIVE", null, HttpStatus.INTERNAL_SERVER_ERROR)
 
-        var listOfNoun : List<Word> = emptyList()
-        var listOFVerb : List<Word> = emptyList()
-        var listOfAdj : List<Word> = emptyList()
+        val mapWord = mutableMapOf<Category,List<Word>>()
         rule.forEach { r ->
-            when (r) {
-                Category.NOUN -> listOfNoun = wordDao.findWordByWordCategory(r)?.toList() ?: emptyList()
-                Category.VERB -> listOFVerb = wordDao.findWordByWordCategory(r)?.toList() ?: emptyList()
-                Category.ADJECTIVE -> listOfAdj = wordDao.findWordByWordCategory(r)?.toList() ?: emptyList()
+            val listOfWord = wordDao.findWordByWordCategory(r)
+            if (listOfWord == null || listOfWord.isEmpty())
+            {
+                    throw GeneralException("The system hasn't had all necessary types of words yet i.e NOUN, VERB, ADJECTIVE", null, HttpStatus.INTERNAL_SERVER_ERROR)
             }
+            mapWord.put(r, listOfWord)
         }
-
-        if (listOfNoun.isEmpty() || listOFVerb.isEmpty() || listOfAdj.isEmpty())
-        {
-            throw GeneralException("The system hasn't had all necessary types of words yet i.e NOUN, VERB, ADJECTIVE", null, HttpStatus.INTERNAL_SERVER_ERROR)
-        }
-
         // Start to generate
         val indexes = arrayOf(0,0,0)
-        val numOfCombines = (listOfNoun.size) * (listOFVerb.size) * (listOfAdj.size)
-        val mapWord = mapOf(Category.NOUN to listOfNoun, Category.VERB to listOFVerb, Category.ADJECTIVE to listOfAdj)
+        var numOfCombines : Int = 1
+        for (e in mapWord)
+        {
+            numOfCombines *= e.value.size
+        }
+
         val thresholds = arrayOf(mapWord.getValue(rule[1]).size * mapWord.getValue(rule[2]).size,
                 mapWord.getValue(rule[2]).size,
                 1)
